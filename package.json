@@ -15,8 +15,11 @@
      "url": "https://github.com/dreamcodestudio",
      "email" : "dreamcodestudio@yandex.com"
    },
-  "license": "MIT",
-  "author": {
+   "changelogUrl": "https://github.com/dreamcodestudio/com.dreamcode.mobile.android-keystore/blob/main/CHANGELOG.md",
+   "documentationUrl": "https://github.com/dreamcodestudio/com.dreamcode.mobile.android-keystore",
+   "license": "MIT",
+   "licensesUrl": "https://github.com/dreamcodestudio/com.dreamcode.mobile.android-keystore/blob/main/LICENSE",
+   "author": {
           "name": "DreamCode",
           "email": "dreamcodestudio@yandex.com",
           "url": "https://yandex.ru/q/profile/dreamcodestudio/"
