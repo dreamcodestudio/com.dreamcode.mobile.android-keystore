@@ -1,27 +1,27 @@
 {
   "name": "com.dreamcode.mobile.android-keystore",
   "displayName": "AutoKeystore",
-  "version": "1.0.11",
-  "unity": "2018.3",
+  "version": "1.0.12",
+  "unity": "2020.3",
   "description": "Allows store android keystore between sessions, without manual input everytime.",
   "keywords": [
-         "android",
-         "utility",
-         "unity",
-         "dreamcode"
-     ],
+    "android",
+    "utility",
+    "unity",
+    "dreamcode"
+  ],
   "homepage": "https://github.com/dreamcodestudio",
   "bugs": {
-     "url": "https://github.com/dreamcodestudio",
-     "email" : "dreamcodestudio@yandex.com"
-   },
-   "changelogUrl": "https://github.com/dreamcodestudio/com.dreamcode.mobile.android-keystore/blob/main/CHANGELOG.md",
-   "documentationUrl": "https://github.com/dreamcodestudio/com.dreamcode.mobile.android-keystore",
-   "license": "MIT",
-   "licensesUrl": "https://github.com/dreamcodestudio/com.dreamcode.mobile.android-keystore/blob/main/LICENSE",
-   "author": {
-          "name": "DreamCode",
-          "email": "dreamcodestudio@yandex.com",
-          "url": "https://yandex.ru/q/profile/dreamcodestudio/"
-    }
+    "url": "https://github.com/dreamcodestudio",
+    "email": "dreamcodestudio@yandex.com"
+  },
+  "changelogUrl": "https://github.com/dreamcodestudio/com.dreamcode.mobile.android-keystore/blob/main/CHANGELOG.md",
+  "documentationUrl": "https://github.com/dreamcodestudio/com.dreamcode.mobile.android-keystore",
+  "license": "MIT",
+  "licensesUrl": "https://github.com/dreamcodestudio/com.dreamcode.mobile.android-keystore/blob/main/LICENSE",
+  "author": {
+    "name": "DreamCode",
+    "email": "dreamcodestudio@yandex.com",
+    "url": "https://yandex.ru/q/profile/dreamcodestudio/"
+  }
 }

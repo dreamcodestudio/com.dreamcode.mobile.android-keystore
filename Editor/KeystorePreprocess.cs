@@ -6,10 +6,18 @@ namespace Packages.DreamCode.AutoKeystore.Editor
 {
     public class KeystorePreprocess : IPreprocessBuildWithReport
     {
-        private const string _keystoreExt = ".keystore";
-
+        #region PUBLIC_VARIABLES
+        
         public int callbackOrder => 0;
-
+        
+        #endregion
+        
+        #region PRIVATE_VARIABLES
+        
+        private const string _keystoreExt = ".keystore";
+        
+        #endregion
+        
         public void OnPreprocessBuild(BuildReport report)
         {
             Autocomplete();
@@ -21,7 +29,6 @@ namespace Packages.DreamCode.AutoKeystore.Editor
             var keystorePass = EditorPrefs.GetString(PlayerSettings.applicationIdentifier + "dcKeystorePass");
             var keyaliasName = EditorPrefs.GetString(PlayerSettings.applicationIdentifier + "dcKeyaliasName");
             var keyaliasPass = EditorPrefs.GetString(PlayerSettings.applicationIdentifier + "dcKeyaliasPass");
-
             //Project Keystore
             PlayerSettings.Android.keystoreName = keystoreName + _keystoreExt;
             PlayerSettings.Android.keystorePass = keystorePass;

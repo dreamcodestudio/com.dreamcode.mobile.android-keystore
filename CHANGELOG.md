@@ -1,5 +1,8 @@
 # Changelog
 
+## [1.0.12] - 2022-09-01
+- UI Toolkit migration
+
 ## [1.0.11] - 2022-08-24
 - Added README.md
 
