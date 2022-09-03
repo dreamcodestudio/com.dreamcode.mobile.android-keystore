@@ -1,5 +1,4 @@
 ﻿using UnityEditor;
-using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace Packages.DreamCode.AutoKeystore.Editor.Windows
@@ -9,10 +8,10 @@ namespace Packages.DreamCode.AutoKeystore.Editor.Windows
 
         #region PRIVATE_VARIABLES
         
-        private string _keystoreName;
-        private string _keystorePass;
-        private string _keyaliasName;
-        private string _keyaliasPass;
+        private TextField _keystoreName;
+        private TextField _keystorePass;
+        private TextField _keyaliasName;
+        private TextField _keyaliasPass;
         private const string _keystoreExt = ".keystore";
 
         #endregion
@@ -44,47 +43,72 @@ namespace Packages.DreamCode.AutoKeystore.Editor.Windows
         private void RegisterListeners()
         {
             rootVisualElement.Q<Button>("SaveBtn").clicked += OnClick_SaveBtn;
+            _keystorePass.RegisterCallback<FocusInEvent>(FocusIn_KeystorePass);
+            _keystorePass.RegisterCallback<FocusOutEvent>(FocusOut_KeystorePass);
+            _keyaliasPass.RegisterCallback<FocusInEvent>(FocusIn_KeyaliasPass);
+            _keyaliasPass.RegisterCallback<FocusOutEvent>(FocusOut_KeyaliasPass);
         }
 
         private void RemoveListeners()
         {
             rootVisualElement.Q<Button>("SaveBtn").clicked -= OnClick_SaveBtn;
+            _keystorePass.UnregisterCallback<FocusInEvent>(FocusIn_KeystorePass);
+            _keystorePass.UnregisterCallback<FocusOutEvent>(FocusOut_KeystorePass);
+            _keyaliasPass.UnregisterCallback<FocusInEvent>(FocusIn_KeyaliasPass);
+            _keyaliasPass.UnregisterCallback<FocusOutEvent>(FocusOut_KeyaliasPass);
         }
         
         private void LoadSettings()
         {
-            _keystoreName = EditorPrefs.GetString(PlayerSettings.applicationIdentifier + "dcKeystoreName");
-            _keystorePass = EditorPrefs.GetString(PlayerSettings.applicationIdentifier + "dcKeystorePass");
-            _keyaliasName = EditorPrefs.GetString(PlayerSettings.applicationIdentifier + "dcKeyaliasName");
-            _keyaliasPass = EditorPrefs.GetString(PlayerSettings.applicationIdentifier + "dcKeyaliasPass");
+            _keystoreName = rootVisualElement.Q<TextField>("KeystorePath");
+            _keystorePass = rootVisualElement.Q<TextField>("KeystorePass");
+            _keystorePass.isPasswordField = true;
+            _keyaliasName = rootVisualElement.Q<TextField>("KeyaliasName");
+            _keyaliasPass = rootVisualElement.Q<TextField>("KeyaliasPass");
+            _keyaliasPass.isPasswordField = true;
             //
-            rootVisualElement.Q<TextField>("KeystorePath").value = _keystoreName;
-            rootVisualElement.Q<TextField>("KeystorePass").value = _keystorePass;
-            rootVisualElement.Q<TextField>("KeyaliasName").value = _keyaliasName;
-            rootVisualElement.Q<TextField>("KeyaliasPass").value = _keyaliasPass;
+            _keystoreName.value = EditorPrefs.GetString(PlayerSettings.applicationIdentifier + "dcKeystoreName");
+            _keystorePass.value = EditorPrefs.GetString(PlayerSettings.applicationIdentifier + "dcKeystorePass");
+            _keyaliasName.value = EditorPrefs.GetString(PlayerSettings.applicationIdentifier + "dcKeyaliasName");
+            _keyaliasPass.value = EditorPrefs.GetString(PlayerSettings.applicationIdentifier + "dcKeyaliasPass");
         }
 
+        private void FocusIn_KeystorePass(FocusInEvent evt)
+        {
+            _keystorePass.isPasswordField = false;
+        }
+        
+        private void FocusOut_KeystorePass(FocusOutEvent evt)
+        {
+            _keystorePass.isPasswordField = true;
+        }
+        
+        private void FocusIn_KeyaliasPass(FocusInEvent evt)
+        {
+            _keyaliasPass.isPasswordField = false;
+        }
+        
+        private void FocusOut_KeyaliasPass(FocusOutEvent evt)
+        {
+            _keyaliasPass.isPasswordField = true;
+        }
+        
         private void SaveSettings()
         {
-            _keystoreName = rootVisualElement.Q<TextField>("KeystorePath").value;
-            _keystorePass = rootVisualElement.Q<TextField>("KeystorePass").value;
-            _keyaliasName = rootVisualElement.Q<TextField>("KeyaliasName").value;
-            _keyaliasPass = rootVisualElement.Q<TextField>("KeyaliasPass").value;
-            //
             EditorPrefs.SetString(PlayerSettings.applicationIdentifier  + "dcKeystoreName",
-                _keystoreName);
+                _keystoreName.value);
             EditorPrefs.SetString(PlayerSettings.applicationIdentifier  + "dcKeystorePass",
-                _keystorePass);
+                _keystorePass.value);
             EditorPrefs.SetString(PlayerSettings.applicationIdentifier  + "dcKeyaliasName",
-                _keyaliasName);
+                _keyaliasName.value);
             EditorPrefs.SetString(PlayerSettings.applicationIdentifier  + "dcKeyaliasPass",
-                _keyaliasPass);
+                _keyaliasPass.value);
             //Project Keystore
-            PlayerSettings.Android.keystoreName = _keystoreName + _keystoreExt;
-            PlayerSettings.Android.keystorePass = _keystorePass;
+            PlayerSettings.Android.keystoreName = _keystoreName.value + _keystoreExt;
+            PlayerSettings.Android.keystorePass = _keystorePass.value;
             //Project Key
-            PlayerSettings.Android.keyaliasName = _keyaliasName;
-            PlayerSettings.Android.keyaliasPass = _keyaliasPass;
+            PlayerSettings.Android.keyaliasName = _keyaliasName.value;
+            PlayerSettings.Android.keyaliasPass = _keyaliasPass.value;
             Close();
         }
     }
