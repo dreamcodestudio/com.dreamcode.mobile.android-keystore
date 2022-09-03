@@ -1,5 +1,8 @@
 # Changelog
 
+## [1.0.12] - 2022-09-03
+- Added password fields indicators
+
 ## [1.0.12] - 2022-09-01
 - UI Toolkit migration
 
