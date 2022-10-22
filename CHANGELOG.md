@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.1.0] - 2022-10-22
+- MS coding style
+- Improvements in core structure
+
 ## [1.0.13] - 2022-09-03
 - Added password fields indicators
 
