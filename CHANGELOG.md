@@ -1,5 +1,8 @@
 # Changelog
 
+## [1.2.0] - 2023-10-22
+- Added Triple DES crypter to store passwords
+
 ## [1.1.0] - 2022-10-22
 - MS coding style
 - Improvements in core structure
