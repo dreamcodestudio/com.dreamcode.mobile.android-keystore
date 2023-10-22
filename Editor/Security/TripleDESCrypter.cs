@@ -32,7 +32,7 @@ namespace DreamCode.AutoKeystore.Editor
         {
             if (string.IsNullOrEmpty(base64String))
                 return string.Empty;
-            var result = string.Empty;
+            var result = base64String;
             try
             {
                 var inputBytes = Convert.FromBase64String(base64String);
@@ -49,11 +49,10 @@ namespace DreamCode.AutoKeystore.Editor
             catch (CryptographicException cryptoEx)
             {
                 Debug.LogWarning($"{nameof(TripleDESCrypter)}-{cryptoEx.Message}");
-                result = base64String;
             }
             catch (Exception e)
             {
-                Debug.LogError($"{nameof(TripleDESCrypter)}-{e.Message}");
+                Debug.LogWarning($"{nameof(TripleDESCrypter)}-{e.Message}");
             }
 
             return result;

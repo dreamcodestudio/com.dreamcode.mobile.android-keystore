@@ -1,5 +1,8 @@
 # Changelog
 
+## [1.2.1] - 2023-10-22
+- Prevent missing data from previous versions
+
 ## [1.2.0] - 2023-10-22
 - Added Triple DES crypter to store passwords
 
