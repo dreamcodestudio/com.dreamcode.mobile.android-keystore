@@ -1,4 +1,5 @@
-﻿using UnityEditor;
+﻿using System.IO;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -96,7 +97,7 @@ namespace DreamCode.AutoKeystore.Editor.UI
         private void LoadSettings()
         {
             KeystoreSettings.Load();
-            _keystoreName.value = KeystoreSettings.Name;
+            _keystoreName.value = Path.GetFileNameWithoutExtension(KeystoreSettings.Name);
             _keystorePass.value = KeystoreSettings.Password;
             _keyaliasName.value = KeystoreSettings.AliasName;
             _keyaliasPass.value = KeystoreSettings.AliasPassword;
