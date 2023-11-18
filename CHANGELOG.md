@@ -1,5 +1,8 @@
 # Changelog
 
+## [1.2.2] - 2023-10-22
+- Avoid overwriting setting by empty values
+
 ## [1.2.1] - 2023-10-22
 - Prevent missing data from previous versions
 
