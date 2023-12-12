@@ -18,7 +18,7 @@ namespace DreamCode.AutoKeystore.Editor.UI
         private TextField _keyaliasName;
         private TextField _keyaliasPass;
 
-        [MenuItem("DreamCode/Android/AutoKeystore")]
+        [MenuItem("Tools/DreamCode/Android/AutoKeystore")]
         internal static void ShowWindow()
         {
             var window = GetWindow<KeystoreEditorWindow>();

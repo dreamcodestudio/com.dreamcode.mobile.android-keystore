@@ -28,7 +28,7 @@ Allows store android keystore between sessions, without manual input everytime.
   * Open `Package Manager` and press `Install` button.
 <img src="https://user-images.githubusercontent.com/7010398/187045087-76c3bf90-f023-46d5-a794-9657d9398548.png" width="730">
 
-* Open the setup dialog `DreamCode > Android > AutoKeystore`
+* Open the setup dialog `Tools > DreamCode > Android > AutoKeystore`
 
 ![preview_autokeystore](https://user-images.githubusercontent.com/7010398/188006008-336628ff-39b7-42b9-820b-e2f21a5513da.png)
 
