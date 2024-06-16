@@ -4,6 +4,7 @@ Allows store android keystore between sessions, without manual input everytime.
 [![NPM Package](https://img.shields.io/npm/v/com.dreamcode.mobile.android-keystore)](https://www.npmjs.com/package/com.dreamcode.mobile.android-keystore)
 [![openupm](https://img.shields.io/npm/v/com.dreamcode.mobile.android-keystore?label=openupm&registry_uri=https://package.openupm.com)](https://openupm.com/packages/com.dreamcode.mobile.android-keystore/)
 [![Licence](https://img.shields.io/npm/l/com.dreamcode.mobile.android-keystore)](https://github.com/dreamcodestudio/com.dreamcode.mobile.android-keystore/blob/main/LICENSE)
+![NPM Downloads](https://img.shields.io/npm/dt/com.dreamcode.mobile.android-keystore)
 
 ### Install from npm 🤖
 * Navigate to the `Packages` directory of your project.
