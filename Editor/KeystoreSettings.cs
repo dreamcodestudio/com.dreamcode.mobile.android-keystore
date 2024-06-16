@@ -1,3 +1,5 @@
+using System;
+using DreamCode.AutoKeystore.Editor.Configuration;
 using UnityEditor;
 
 namespace DreamCode.AutoKeystore.Editor
@@ -9,18 +11,32 @@ namespace DreamCode.AutoKeystore.Editor
         internal static string AliasName { get; private set; }
         internal static string AliasPassword { get; private set; }
         private const string KeystoreExt = ".keystore";
+
         private static readonly ICrypter _crypter = new TripleDESCrypter(nameof(KeystoreSettings));
+        private static readonly KeystoreRepositoryFactory _factory = new();
+        private static IKeystoreRepository _keystoreRepository;
+
+        public static void SetupRepository(KeystoreRepository repository)
+        {
+            _keystoreRepository = _factory.Create(repository);
+        }
 
         public static void Load()
         {
             if (EditorUserBuildSettings.activeBuildTarget != BuildTarget.Android)
                 return;
-            var projectKeystore = LoadProjectKeystore();
+            if (_keystoreRepository == null)
+                throw new InvalidOperationException(
+                    $"{nameof(KeystoreSettings)}-{nameof(_keystoreRepository)} is not configured");
+            var projectKeystore = _keystoreRepository.LoadProjectKeystore(_crypter);
             if (string.IsNullOrEmpty(projectKeystore.name) || string.IsNullOrEmpty(projectKeystore.password))
                 return;
-            var projectKey = LoadProjectKey();
+            projectKeystore.name += KeystoreExt;
+
+            var projectKey = _keystoreRepository.LoadProjectKey(_crypter);
             if (string.IsNullOrEmpty(projectKey.name) || string.IsNullOrEmpty(projectKey.password))
                 return;
+
             PlayerSettings.Android.keystoreName = Name = projectKeystore.name;
             PlayerSettings.Android.keystorePass = Password = projectKeystore.password;
             PlayerSettings.Android.keyaliasName = AliasName = projectKey.name;
@@ -31,48 +47,25 @@ namespace DreamCode.AutoKeystore.Editor
         {
             if (EditorUserBuildSettings.activeBuildTarget != BuildTarget.Android)
                 return;
+            if (_keystoreRepository == null)
+                throw new InvalidOperationException(
+                    $"{nameof(KeystoreSettings)}-{nameof(_keystoreRepository)} is not configured");
             if (string.IsNullOrEmpty(password) || string.IsNullOrEmpty(aliasPassword))
                 return;
             var encryptedPassword = _crypter.Encrypt(password);
             var encryptedAliasPassword = _crypter.Encrypt(aliasPassword);
-            EditorPrefs.SetString($"{PlayerSettings.applicationIdentifier}-{nameof(KeystoreSettings)}-{nameof(Name)}",
-                name);
-            EditorPrefs.SetString(
-                $"{PlayerSettings.applicationIdentifier}-{nameof(KeystoreSettings)}-{nameof(Password)}",
-                encryptedPassword);
-            EditorPrefs.SetString(
-                $"{PlayerSettings.applicationIdentifier}-{nameof(KeystoreSettings)}-{nameof(AliasName)}", aliasName);
-            EditorPrefs.SetString(
-                $"{PlayerSettings.applicationIdentifier}-{nameof(KeystoreSettings)}-{nameof(AliasPassword)}",
-                encryptedAliasPassword);
+
+            _keystoreRepository.Save(
+                name,
+                aliasName,
+                encryptedPassword,
+                encryptedAliasPassword
+            );
+
             PlayerSettings.Android.keystoreName = name + KeystoreExt;
             PlayerSettings.Android.keystorePass = password;
             PlayerSettings.Android.keyaliasName = aliasName;
             PlayerSettings.Android.keyaliasPass = aliasPassword;
-        }
-
-        private static (string name, string password) LoadProjectKeystore()
-        {
-            var name = EditorPrefs.GetString(
-                $"{PlayerSettings.applicationIdentifier}-{nameof(KeystoreSettings)}-{nameof(Name)}");
-            name += KeystoreExt;
-            var prefsPassword = EditorPrefs.GetString(
-                $"{PlayerSettings.applicationIdentifier}-{nameof(KeystoreSettings)}-{nameof(Password)}");
-            var decryptedPassword = _crypter.Decrypt(prefsPassword);
-
-            return (name, decryptedPassword);
-        }
-
-        private static (string name, string password) LoadProjectKey()
-        {
-            var name = EditorPrefs.GetString(
-                $"{PlayerSettings.applicationIdentifier}-{nameof(KeystoreSettings)}-{nameof(AliasName)}");
-            var prefsAliasPassword =
-                EditorPrefs.GetString(
-                    $"{PlayerSettings.applicationIdentifier}-{nameof(KeystoreSettings)}-{nameof(AliasPassword)}");
-            var decryptedAliasPassword = _crypter.Decrypt(prefsAliasPassword);
-
-            return (name, decryptedAliasPassword);
         }
     }
 }

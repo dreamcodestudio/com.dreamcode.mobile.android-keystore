@@ -1,7 +1,7 @@
 {
   "name": "com.dreamcode.mobile.android-keystore",
   "displayName": "AutoKeystore",
-  "version": "1.2.3",
+  "version": "1.3.0",
   "unity": "2020.3",
   "description": "Allows store android keystore between sessions, without manual input everytime.",
   "keywords": [

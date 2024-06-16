@@ -1,5 +1,8 @@
 # Changelog
 
+## [1.3.0] - 2024-06-16
+- Added load keystore from environment variables
+
 ## [1.2.3] - 2023-12-12
 - Changed toolbar path to match Unity submission-guidelines (section 2.5.1.a)
 
