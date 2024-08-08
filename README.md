@@ -66,5 +66,7 @@ https://assetstore.unity.com/packages/slug/232044
 
 ![preview_autokeystore](https://user-images.githubusercontent.com/7010398/188006008-336628ff-39b7-42b9-820b-e2f21a5513da.png)
 
+https://github.com/user-attachments/assets/20175286-3b3a-47fb-98fa-1b6a3e954415
+
 ### Well done 🤝
 Now keystore data will be autocomplete on build stage.
