@@ -71,3 +71,8 @@ https://github.com/user-attachments/assets/522d73ea-c320-4782-a3c6-1b5bf10a14fc
 
 ### Well done 🤝
 Now keystore data will be autocomplete on build stage.
+
+# ✉️ Contact
+[Telegram](https://t.me/dreamcestudio)
+
+[Email](mailto:dreamcodestudio@yandex.com)
