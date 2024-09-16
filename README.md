@@ -76,3 +76,7 @@ Now keystore data will be autocomplete on build stage.
 [Telegram](https://t.me/dreamcestudio)
 
 [Email](mailto:dreamcodestudio@yandex.com)
+
+# 🔑 License
+
+[Unity Asset Store EULA](https://unity.com/legal/as-terms)
