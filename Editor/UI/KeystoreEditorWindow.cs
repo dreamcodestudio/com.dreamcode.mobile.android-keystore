@@ -73,7 +73,7 @@ namespace DreamCode.AutoKeystore.Editor.UI
             Close();
         }
 
-        private void OnDonateBtnClicked() => Application.OpenURL("https://punkto.me/eCUIF99");
+        private void OnDonateBtnClicked() => Application.OpenURL("https://nowpayments.io/donation/dreamcode");
 
         private void OnKeystorePassFocusIn(FocusInEvent e)
         {
